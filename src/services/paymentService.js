@@ -1,16 +1,10 @@
 import api from './api'
 
-export async function criarPreferenciaPagamento(itensCarrinho) {
-  const { data } = await api.post('/pagamentos/criar-preferencia', {
-    itens: itensCarrinho,
-  })
-  return data.checkoutUrl
-}
-
-export async function processarPagamento(api, formData, valorEsperado) {
+export async function processarPagamento(formData, itens, cliente) {
   const { data } = await api.post('/pagamentos/processar', {
     formData,
-    valorEsperado,
+    itens,
+    cliente,
   })
   return data
 }
