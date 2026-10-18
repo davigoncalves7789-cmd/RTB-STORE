@@ -16,7 +16,7 @@ const limpar = (valor, max = 100) => String(valor ?? '').trim().slice(0, max);
 
 router.post('/processar', async (req, res) => {
   try {
-    const { formData, itens, cliente } = req.body;
+    const { formData, itens, cliente, idempotencyKey } = req.body;
 
     if (!formData || !Array.isArray(itens) || itens.length === 0 || !cliente) {
       return res.status(400).json({ erro: 'Dados do pedido incompletos.' });
@@ -50,6 +50,10 @@ router.post('/processar', async (req, res) => {
     }
 
     const pedidoId = randomUUID();
+    const chave =
+      typeof idempotencyKey === 'string' && /^[\w-]{16,64}$/.test(idempotencyKey)
+        ? idempotencyKey
+        : undefined;
     const dadosCliente = Object.fromEntries(
       [...CAMPOS_CLIENTE, 'complemento'].map((campo) => [campo, limpar(cliente[campo])])
     );
@@ -76,13 +80,14 @@ router.post('/processar', async (req, res) => {
           itens: itensValidados.map(({ id, quantity }) => ({ id, quantity })),
         },
       },
+      requestOptions: chave ? { idempotencyKey: chave } : undefined,
     });
 
     res.json({
       status: resultado.status,
       statusDetail: resultado.status_detail,
       paymentId: resultado.id,
-      pedidoId,
+      pedidoId: resultado.external_reference ?? pedidoId,
       pontoInteracao: resultado.point_of_interaction ?? null,
     });
   } catch (erro) {

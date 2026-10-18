@@ -5,6 +5,7 @@ import { formatarPreco } from '../../utils/formatters'
 import { processarPagamento } from '../../services/paymentService'
 
 const PUBLIC_KEY = import.meta.env.VITE_MERCADO_PAGO_PUBLIC_KEY
+const COOLDOWN_MS = 3000
 
 const FORM_VAZIO = {
   nome: '',
@@ -72,6 +73,9 @@ export function Checkout() {
   const [resultado, setResultado] = useState(null)
   const [erro, setErro] = useState(null)
   const brickRef = useRef(null)
+  const promessaRef = useRef(null)
+  const liberadoEmRef = useRef(0)
+  const chaveRef = useRef(crypto.randomUUID())
 
   const itensComProduto = itens
     .map((item) => {
@@ -145,6 +149,13 @@ export function Checkout() {
         callbacks: {
           onReady: () => {},
           onSubmit: ({ formData }) => {
+            if (promessaRef.current) return promessaRef.current
+
+            if (Date.now() < liberadoEmRef.current) {
+              setErro('Aguarde alguns segundos antes de tentar de novo.')
+              return Promise.reject(new Error('cooldown'))
+            }
+
             setErro(null)
             const itensPedido = itens.map(({ produtoId, quantidade }) => ({
               produtoId,
@@ -156,18 +167,33 @@ export function Checkout() {
               cep: digitos(form.cep),
               estado: form.estado.trim().toUpperCase(),
             }
-            return processarPagamento(formData, itensPedido, cliente)
+
+            const promessa = processarPagamento(
+              formData,
+              itensPedido,
+              cliente,
+              chaveRef.current
+            )
               .then((res) => {
                 setResultado(res)
                 if (res.status === 'approved') limparCarrinho()
+                else liberadoEmRef.current = Date.now() + COOLDOWN_MS
               })
               .catch((e) => {
+                liberadoEmRef.current = Date.now() + COOLDOWN_MS
                 setErro(
                   e?.response?.data?.erro ||
                     'Não foi possível processar o pagamento. Tente novamente.'
                 )
                 throw e
               })
+              .finally(() => {
+                promessaRef.current = null
+                chaveRef.current = crypto.randomUUID()
+              })
+
+            promessaRef.current = promessa
+            return promessa
           },
           onError: () => {
             setErro('Erro ao carregar o formulário de pagamento.')
