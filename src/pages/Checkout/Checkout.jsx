@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useCartStore } from '../../store/cartStore'
 import { useProducts } from '../../hooks/useProducts'
 import { formatarPreco } from '../../utils/formatters'
 import { processarPagamento } from '../../services/paymentService'
+import { acordarServidor } from '../../services/healthService'
 
 const PUBLIC_KEY = import.meta.env.VITE_MERCADO_PAGO_PUBLIC_KEY
 const COOLDOWN_MS = 3000
@@ -65,6 +66,16 @@ export function Checkout() {
   const limparCarrinho = useCartStore((state) => state.limparCarrinho)
   const { produtos, carregando } = useProducts()
   const sdkPronto = useMercadoPagoSdk()
+  const [servidor, setServidor] = useState('acordando')
+
+  const verificarServidor = useCallback(() => {
+    setServidor('acordando')
+    acordarServidor().then((ok) => setServidor(ok ? 'pronto' : 'falhou'))
+  }, [])
+
+  useEffect(() => {
+    verificarServidor()
+  }, [verificarServidor])
 
   const [etapa, setEtapa] = useState('dados')
   const [form, setForm] = useState(FORM_VAZIO)
@@ -127,6 +138,7 @@ export function Checkout() {
       etapa !== 'pagamento' ||
       !aceitouTermos ||
       !sdkPronto ||
+      servidor !== 'pronto' ||
       subtotal <= 0 ||
       resultado
     ) {
@@ -210,7 +222,7 @@ export function Checkout() {
       brickRef.current?.unmount()
       brickRef.current = null
     }
-  }, [etapa, aceitouTermos, sdkPronto, subtotal, resultado])
+  }, [etapa, aceitouTermos, sdkPronto, servidor, subtotal, resultado])
 
   if (carregando) {
     return (
@@ -391,7 +403,28 @@ export function Checkout() {
               armazenada por este site.
             </label>
           ) : (
-            <div id="payment-brick-container" className="mt-6" />
+            <>
+              {servidor === 'acordando' && (
+                <p role="status" className="mt-6 text-sm text-neutral-600">
+                  Preparando o pagamento seguro. Pode levar alguns segundos...
+                </p>
+              )}
+              {servidor === 'falhou' && (
+                <div className="mt-6">
+                  <p role="alert" className="text-sm text-red-600">
+                    Não conseguimos conectar ao pagamento agora.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={verificarServidor}
+                    className="mt-3 rounded-md bg-neutral-900 px-6 py-3 font-medium text-white transition hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2"
+                  >
+                    Tentar novamente
+                  </button>
+                </div>
+              )}
+              <div id="payment-brick-container" className="mt-6" />
+            </>
           )}
         </>
       )}

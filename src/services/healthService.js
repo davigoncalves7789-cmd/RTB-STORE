@@ -1,16 +1,16 @@
 import api from './api'
 
-let tentativa = null
+let emAndamento = null
 
 export function acordarServidor() {
-  if (!tentativa) {
-    tentativa = api
+  if (!emAndamento) {
+    emAndamento = api
       .get('/health', { timeout: 70000 })
       .then(() => true)
-      .catch(() => {
-        tentativa = null
-        return false
+      .catch(() => false)
+      .finally(() => {
+        emAndamento = null
       })
   }
-  return tentativa
+  return emAndamento
 }
