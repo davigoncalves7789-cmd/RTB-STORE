@@ -9,54 +9,64 @@
     "estoque": 2,
     "avaliacaoMedia": 0,
     "totalAvaliacoes": 0,
-    "imagens": ["/produtos/lapis-2em1-hello-mini-perfect-1.jpg"]
+    "imagens": [
+      "/produtos/lapis-2em1-hello-mini-perfect-1.jpg"
+    ]
   },
   {
     "id": "2",
     "nome": "Gel Incolor para Cílios e Sobrancelhas Ruby Rose Game On",
     "descricao": "Deixe seus cílios e sobrancelhas alinhados e com acabamento natural no dia a dia. Ideal para modelar, organizar e finalizar os fios sem adicionar cor. Sua fórmula conta com óleo de rícino e vitamina E, ingredientes conhecidos pelo cuidado e condicionamento dos fios. Por ser incolor, combina com diferentes tons de sobrancelha e pode ser usado sozinho ou como etapa final da maquiagem. Modo de uso: aplique uma pequena quantidade sobre os cílios ou sobrancelhas e penteie os fios até atingir o formato desejado.",
-    "preco": 10,
+    "preco": 25.9,
     "precoPromocional": null,
     "categoria": "maquiagem",
     "estoque": 2,
     "avaliacaoMedia": 0,
     "totalAvaliacoes": 0,
-    "imagens": ["/produtos/gel-incolor-cilios-sobrancelhas-rr-1.jpg"]
+    "imagens": [
+      "/produtos/gel-incolor-cilios-sobrancelhas-rr-1.jpg"
+    ]
   },
   {
     "id": "3",
     "nome": "Sabonete Cremoso Facial Ruby Skin On Off – Limpeza Equilibrada",
     "descricao": "Cuide da sua pele todos os dias com o Sabonete Cremoso Facial Ruby Skin. Desenvolvido para uma limpeza equilibrada, ajuda a remover impurezas e resíduos da pele de forma prática, deixando uma agradável sensação de limpeza e cuidado. Sua fórmula conta com ácido hialurônico, extrato de frutas e pantenol, ingredientes conhecidos por auxiliarem na hidratação e no cuidado diário da pele. Modo de uso: aplique uma pequena quantidade sobre o rosto úmido, massageie suavemente em movimentos circulares e enxágue completamente.",
-    "preco": 10,
+    "preco": 20.5,
     "precoPromocional": null,
     "categoria": "skincare",
     "estoque": 2,
     "avaliacaoMedia": 0,
     "totalAvaliacoes": 0,
-    "imagens": ["/produtos/sabonete-facial-ruby-skin-onoff-1.jpg"]
+    "imagens": [
+      "/produtos/sabonete-facial-ruby-skin-onoff-1.jpg"
+    ]
   },
   {
     "id": "4",
     "nome": "Gel Aromatizante Girls Moment Morango com Chantilly – Phállebeauty 130ml",
     "descricao": "Deixe sua rotina ainda mais gostosa com o Gel Aromatizante Girls Moment, da Phállebeauty. Com fragrância inspirada em morango com chantilly, traz um aroma doce, delicado e envolvente, ideal para quem gosta de produtos cheirosos e com visual super feminino. Textura em gel e embalagem prática com válvula pump, fácil de usar no dia a dia. Conteúdo: 130 ml.",
-    "preco": 10,
+    "preco": 12.5,
     "precoPromocional": null,
     "categoria": "perfumaria",
     "estoque": 2,
     "avaliacaoMedia": 0,
     "totalAvaliacoes": 0,
-    "imagens": ["/produtos/gel-aromatizante-girls-moment-1.jpg"]
+    "imagens": [
+      "/produtos/gel-aromatizante-girls-moment-1.jpg"
+    ]
   },
   {
     "id": "5",
     "nome": "Pó Translúcido Banana Vivai",
     "descricao": "Finalize sua maquiagem com um acabamento mais uniforme e natural usando o Pó Translúcido Banana Vivai. Ideal para selar a maquiagem, ajudar a reduzir o aspecto de oleosidade e deixar a pele com aparência mais sequinha e bem finalizada. A tonalidade banana ajuda a suavizar visualmente áreas como abaixo dos olhos e zona T. Modo de uso: aplique uma pequena quantidade com pincel ou esponja sobre a pele, principalmente nas regiões onde deseja selar a maquiagem ou controlar o brilho.",
-    "preco": 10,
+    "preco": 19.99,
     "precoPromocional": null,
     "categoria": "maquiagem",
     "estoque": 2,
     "avaliacaoMedia": 0,
     "totalAvaliacoes": 0,
-    "imagens": ["/produtos/po-translucido-banana-vivai-1.jpg"]
+    "imagens": [
+      "/produtos/po-translucido-banana-vivai-1.jpg"
+    ]
   }
 ]
