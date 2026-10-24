@@ -68,5 +68,47 @@
     "imagens": [
       "/produtos/po-translucido-banana-vivai-1.jpg"
     ]
+  },
+  {
+    "id": "6",
+    "nome": "Unhas Postiças Infantis Stitch",
+    "descricao": "Deixe as unhas das pequenas ainda mais fofas com as unhas postiças infantis decoradas com o Stitch. Com estampas coloridas e divertidas, são perfeitas para quem ama o personagem e adora unhas cheias de charme. Uma opção encantadora para deixar o visual ainda mais divertido!",
+    "preco": 10,
+    "precoPromocional": null,
+    "categoria": "maquiagem",
+    "estoque": 2,
+    "avaliacaoMedia": 0,
+    "totalAvaliacoes": 0,
+    "imagens": [
+      "/produtos/unhas-infantis-stitch-1.jpeg"
+    ]
+  },
+  {
+    "id": "7",
+    "nome": "Gel Aromatizante para Virilha Glow Secret Morango Lua&Neve 320g",
+    "descricao": "O Gel Aromatizante para Virilha Glow Secret da Lua&Neve, na fragrância de morango, é ideal para quem deseja incluir um toque especial de perfumação na rotina de cuidados pessoais. Com uma textura agradável e embalagem prática com válvula pump, facilita a aplicação e proporciona uma experiência perfumada e delicada. Características do produto: Marca: Lua&Neve. Linha: Glow Secret. Fragrância: Morango. Tipo: Gel aromatizante para virilha. Conteúdo: 320 g. Embalagem com válvula pump para facilitar a aplicação. Modo de uso: Aplique conforme as instruções da embalagem. Evite contato com mucosas e áreas íntimas internas. Em caso de irritação, suspenda o uso.",
+    "preco": 16.5,
+    "precoPromocional": null,
+    "categoria": "perfumaria",
+    "estoque": 2,
+    "avaliacaoMedia": 0,
+    "totalAvaliacoes": 0,
+    "imagens": [
+      "/produtos/gel-virilha-glow-secret-morango-1.jpeg"
+    ]
+  },
+  {
+    "id": "8",
+    "nome": "Gel Aromatizante para Virilha Glow Secret Tutti-Frutti Lua&Neve 320g",
+    "descricao": "O Gel Aromatizante para Virilha Glow Secret da Lua&Neve, na fragrância tutti-frutti, é ideal para quem deseja incluir um toque especial de perfumação na rotina de cuidados pessoais. Com uma textura agradável e embalagem prática com válvula pump, facilita a aplicação e proporciona uma experiência perfumada e delicada. Características do produto: Marca: Lua&Neve. Linha: Glow Secret. Fragrância: Tutti-Frutti. Tipo: Gel aromatizante para virilha. Conteúdo: 320 g. Embalagem com válvula pump para facilitar a aplicação. Modo de uso: Aplique conforme as instruções da embalagem. Evite contato com mucosas e áreas íntimas internas. Em caso de irritação, suspenda o uso.",
+    "preco": 16.5,
+    "precoPromocional": null,
+    "categoria": "perfumaria",
+    "estoque": 2,
+    "avaliacaoMedia": 0,
+    "totalAvaliacoes": 0,
+    "imagens": [
+      "/produtos/gel-virilha-glow-secret-tuttifrutti-1.jpeg"
+    ]
   }
 ]
