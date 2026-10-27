@@ -110,5 +110,19 @@
     "imagens": [
       "/produtos/gel-virilha-glow-secret-tuttifrutti-1.jpeg"
     ]
+  },
+  {
+    "id": "9",
+    "nome": "Lenços Demaquilantes IAMO – 30 unidades",
+    "descricao": "Os Lenços Demaquilantes IAMO são ideais para facilitar sua rotina de cuidados com a pele. Sua fórmula com vitamina E ajuda a limpar, hidratar e revitalizar a pele, removendo a maquiagem de forma prática e rápida. Perfeitos para o dia a dia, são uma ótima opção para manter sua pele limpa sem complicação. Características do produto: Marca: IAMO. Quantidade: 30 lenços. Tamanho de cada lenço: 15 x 18 cm. Fórmula com vitamina E. Ação de limpeza, hidratação e revitalização da pele.",
+    "preco": 10,
+    "precoPromocional": null,
+    "categoria": "skincare",
+    "estoque": 2,
+    "avaliacaoMedia": 0,
+    "totalAvaliacoes": 0,
+    "imagens": [
+      "/produtos/lencos-demaquilantes-iamo-1.jpeg"
+    ]
   }
 ]
