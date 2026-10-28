@@ -91,7 +91,7 @@ router.post('/processar', async (req, res) => {
       pontoInteracao: resultado.point_of_interaction ?? null,
     });
   } catch (erro) {
-    console.error('Erro ao processar pagamento:', erro.message, erro.cause ?? '');
+    console.error('Erro ao processar pagamento:', erro.message, erro.status ?? '');
     res.status(500).json({ erro: 'Não foi possível processar o pagamento.' });
   }
 });
