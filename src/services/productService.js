@@ -1,41 +1,57 @@
-import produtos from '../data/produtos.json'
-// import api from './api' // <- descomenta quando o backend Express existir
+import { supabase } from '../config/supabase'
 
-/**
- * productService: única porta de entrada para dados de produto.
- *
- * NENHUM componente ou página deve importar `produtos.json` diretamente.
- * Todos passam por aqui. Isso é o que permite trocar "ler um arquivo JSON"
- * por "chamar uma API Express + PostgreSQL" sem tocar em nenhuma tela.
- *
- * As funções já são `async` mesmo lendo dados locais síncronos — de propósito,
- * para que a troca futura (`await api.get(...)`) não mude a forma como quem
- * chama usa essa função.
- */
+const COLUNAS =
+  'id, nome, descricao, preco, preco_promocional, categoria, estoque, avaliacao_media, total_avaliacoes, imagens'
+
+function paraProduto(linha) {
+  return {
+    id: linha.id,
+    nome: linha.nome,
+    descricao: linha.descricao,
+    preco: Number(linha.preco),
+    precoPromocional:
+      linha.preco_promocional == null ? null : Number(linha.preco_promocional),
+    categoria: linha.categoria,
+    estoque: linha.estoque,
+    avaliacaoMedia: Number(linha.avaliacao_media),
+    totalAvaliacoes: linha.total_avaliacoes,
+    imagens: linha.imagens ?? [],
+  }
+}
+
+const escaparBusca = (texto) => texto.replace(/[\\%_]/g, '\\$&')
 
 export async function getAll({ categoria, busca } = {}) {
-  // Futuro:
-  // const { data } = await api.get('/produtos', { params: { categoria, busca } })
-  // return data
-
-  let resultado = produtos
+  let consulta = supabase
+    .from('produtos')
+    .select(COLUNAS)
+    .eq('ativo', true)
+    .order('criado_em', { ascending: true })
+    .order('id', { ascending: true })
 
   if (categoria) {
-    resultado = resultado.filter((p) => p.categoria === categoria)
+    consulta = consulta.eq('categoria', categoria)
   }
 
   if (busca) {
-    const termo = busca.toLowerCase()
-    resultado = resultado.filter((p) => p.nome.toLowerCase().includes(termo))
+    consulta = consulta.ilike('nome', `%${escaparBusca(busca)}%`)
   }
 
-  return resultado
+  const { data, error } = await consulta
+  if (error) throw error
+
+  return data.map(paraProduto)
 }
 
 export async function getById(id) {
-  // Futuro:
-  // const { data } = await api.get(`/produtos/${id}`)
-  // return data
+  const { data, error } = await supabase
+    .from('produtos')
+    .select(COLUNAS)
+    .eq('id', id)
+    .eq('ativo', true)
+    .maybeSingle()
 
-  return produtos.find((p) => p.id === id) ?? null
+  if (error) throw error
+
+  return data ? paraProduto(data) : null
 }
