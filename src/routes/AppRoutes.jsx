@@ -22,7 +22,9 @@ const Checkout = lazy(() =>
 function CarregandoPagina() {
   return <div className="mx-auto max-w-6xl px-4 py-10 text-neutral-400">Carregando…</div>
 }
-
+const Admin = lazy(() =>
+  import('../pages/Admin').then((m) => ({ default: m.Admin }))
+)
 export function AppRoutes() {
   return (
     <Suspense fallback={<CarregandoPagina />}>
@@ -33,6 +35,7 @@ export function AppRoutes() {
           <Route path="/carrinho" element={<Cart />} />
           <Route path="/favoritos" element={<Favorites />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/admin" element={<Admin />} />
         </Route>
       </Routes>
     </Suspense>
